@@ -12,101 +12,90 @@
     }
 
     body {
+      margin: 0;
+      font-family: system-ui;
       height: 100vh;
-      margin: 4% 20%;
-      display: flex;
-      flex-wrap: wrap;
       overflow: hidden;
-      gap: 1rem;
-      justify-content: center;
-      align-content: flex-start;
+      display: grid;
+      place-content: center;
+      background: aliceblue;
     }
 
     div.card {
-      width: 240px;
-      min-width: 240px;
-      height: 280px;
-      min-height: 280px;
+      aspect-ratio: 6/9;
+      width: 360px;
       display: flex;
       flex-direction: column;
+      gap: 12px;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+      padding: 16px;
+      background: white;
+      box-shadow: inset 0 0 0 1px rgb(0, 0, 0, 0.12);
     }
 
     div.card-header {
-      flex-grow: 0;
-      background-color: rgba(0, 0, 0, 0.03);
-      padding: 8px 12px;
-      display: flex;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: min-content auto;
       align-items: center;
-    }
-
-    div.card-body {
-      flex-grow: 1;
-      position: relative;
-    }
-
-    div.card-footer {
       flex-grow: 0;
-      background-color: rgba(0, 0, 0, 0.03);
-      padding: 8px 12px;
+      gap: 12px;
     }
 
     img.card-avatar {
       display: block;
-      min-width: 24px;
-      width: 24px;
-      min-height: 24px;
-      height: 24px;
-      border-radius: 100%;
+      width: 48px;
+      height: 48px;
+      border-radius: 48px;
       flex-grow: 0;
       object-fit: cover;
     }
 
     div.card-title {
-      font-family: system-ui;
-      font-size: 0.8rem;
-      font-weight: 600;
-      line-height: 1;
-      min-height: 16px;
-      height: 16px;
+      font-weight: bold;
+      line-height: 24px;
       width: 100%;
+      height: 24px;
       border-radius: 4px;
-      color: rgba(0, 0, 0, 0.8);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    div.card-body {
+      flex-grow: 1;
+    }
+
     img.card-image {
       display: block;
-      position: absolute;
-      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 4px;
+    }
+
+    div.card-footer {
+      flex-grow: 0;
     }
 
     div.card-description {
-      font-family: system-ui;
-      font-size: 0.8rem;
-      min-height: 36px;
-      height: 36px;
       width: 100%;
+      height: 72px;
+      font-size: 0.81rem;
       border-radius: 4px;
-      color: rgba(0, 0, 0, 0.8);
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
     *[skeleton]:empty {
-      background-image: linear-gradient(90deg, rgba(0, 0, 0, .1) 24%, rgba(0, 0, 0, .15) 32%, rgba(0, 0, 0, .1) 64%);
+      --base-color: rgba(0, 0, 0, 0.04);
+      --emphasis-color: rgba(0, 0, 0, 0.08);
+      content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>");
+      background-image: linear-gradient(90deg, var(--base-color) 24%, var(--emphasis-color) 32%, var(--base-color) 64%);
       background-size: 400% 100%;
-      animation: skeleton-loading 1s ease infinite;
+      animation: skeleton-loading 1s ease-in-out infinite;
     }
 
     @keyframes skeleton-loading {
@@ -125,76 +114,11 @@
 
   <div class="card">
     <div class="card-header">
-      <img class="card-avatar" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
+      <img class="card-avatar" skeleton />
       <div class="card-title" skeleton></div>
     </div>
     <div class="card-body">
-      <img class="card-image" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-    </div>
-    <div class="card-footer">
-      <div class="card-description" skeleton></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <img class="card-avatar" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-      <div class="card-title" skeleton></div>
-    </div>
-    <div class="card-body">
-      <img class="card-image" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-    </div>
-    <div class="card-footer">
-      <div class="card-description" skeleton></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <img class="card-avatar" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-      <div class="card-title" skeleton></div>
-    </div>
-    <div class="card-body">
-      <img class="card-image" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-    </div>
-    <div class="card-footer">
-      <div class="card-description" skeleton></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <img class="card-avatar" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-      <div class="card-title" skeleton></div>
-    </div>
-    <div class="card-body">
-      <img class="card-image" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-    </div>
-    <div class="card-footer">
-      <div class="card-description" skeleton></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <img class="card-avatar" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-      <div class="card-title" skeleton></div>
-    </div>
-    <div class="card-body">
-      <img class="card-image" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-    </div>
-    <div class="card-footer">
-      <div class="card-description" skeleton></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <img class="card-avatar" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
-      <div class="card-title" skeleton></div>
-    </div>
-    <div class="card-body">
-      <img class="card-image" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>" skeleton />
+      <img class="card-image" skeleton />
     </div>
     <div class="card-footer">
       <div class="card-description" skeleton></div>
@@ -202,37 +126,26 @@
   </div>
 
   <script>
-    window.fetch = (url, params) => new Promise(resolve => {
-      setTimeout(() => {
-        resolve(new Response(
-          JSON.stringify(
-            Array.from({ length: params.limit }).fill({
-              avatar: 'https://www.themoviedb.org/t/p/original/4YArEocnplmnMP1c7W9fESwRGJc.jpg',
-              title: 'Lorem ipsum dolor',
-              image: 'https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas ducimus natus.'
-            })
-          )));
-      }, 2000);
-    });
+    const cardAvatar = document.querySelector('img.card-avatar');
+    const cardTitle = document.querySelector('div.card-title');
+    const cardImage = document.querySelector('img.card-image');
+    const cardDescription = document.querySelector('div.card-description');
 
-    window.fetch('https://data.get', { limit: 6 })
-      .then(response => response.json())
-      .then(items => {
+    window.setTimeout(() => {
 
-        const cards = document.querySelectorAll('div.card');
+      window.fetch('assets/mockup/data.json')
+        .then(response => response.json())
+        .then(({ data }) => {
 
-        items.forEach((item, index) => {
+          const { image, avatar, title, description } = data[0];
 
-          const node = cards[index];
-
-          node.querySelector('img.card-avatar').src = item.avatar;
-          node.querySelector('div.card-title').innerHTML = item.title;
-          node.querySelector('img.card-image').src = item.image;
-          node.querySelector('div.card-description').innerHTML = item.description;
+          cardImage.style.content = `url(${image})`;
+          cardAvatar.style.content = `url(${avatar})`;
+          cardTitle.innerHTML = title;
+          cardDescription.innerHTML = description;
         });
 
-      });
+    }, 5000);
   </script>
 </body>
 

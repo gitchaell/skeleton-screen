@@ -12,29 +12,29 @@
     }
 
     body {
+      background: aliceblue;
       margin: 0;
       font-family: system-ui;
       height: 100vh;
-      overflow: hidden;
       display: grid;
       place-content: center;
-      background: aliceblue;
+      overflow: hidden;
     }
 
     div.card {
       aspect-ratio: 6/9;
       width: 360px;
+      background: white;
+      box-shadow: inset 0 0 0 1px rgb(0, 0, 0, 0.12);
       display: flex;
       flex-direction: column;
       gap: 12px;
       border-radius: 8px;
-      overflow: hidden;
       padding: 16px;
-      background: white;
-      box-shadow: inset 0 0 0 1px rgb(0, 0, 0, 0.12);
+      overflow: hidden;
     }
 
-    div.card-header {
+    div.card__header {
       display: grid;
       grid-template-columns: min-content auto;
       align-items: center;
@@ -42,7 +42,7 @@
       gap: 12px;
     }
 
-    img.card-avatar {
+    img.card__avatar {
       display: block;
       width: 48px;
       height: 48px;
@@ -51,7 +51,7 @@
       object-fit: cover;
     }
 
-    div.card-title {
+    div.card__title {
       font-weight: bold;
       line-height: 24px;
       width: 100%;
@@ -62,11 +62,11 @@
       text-overflow: ellipsis;
     }
 
-    div.card-body {
+    div.card__body {
       flex-grow: 1;
     }
 
-    img.card-image {
+    img.card__image {
       display: block;
       width: 100%;
       height: 100%;
@@ -74,11 +74,11 @@
       border-radius: 4px;
     }
 
-    div.card-footer {
+    div.card__footer {
       flex-grow: 0;
     }
 
-    div.card-description {
+    div.card__description {
       width: 100%;
       height: 72px;
       font-size: 0.81rem;
@@ -90,19 +90,16 @@
     }
 
     *[skeleton]:empty {
-      --base-color: rgba(0, 0, 0, 0.04);
-      --emphasis-color: rgba(0, 0, 0, 0.08);
-      content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'/>");
+      --base-color: rgba(0, 0, 0, 0.08);
+      --emphasis-color: rgba(0, 0, 0, 0.12);
       background-image: linear-gradient(90deg, var(--base-color) 24%, var(--emphasis-color) 32%, var(--base-color) 64%);
       background-size: 400% 100%;
+      background-position: 100% 50%;
+      content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>');
       animation: skeleton-loading 1s ease-in-out infinite;
     }
 
     @keyframes skeleton-loading {
-      0% {
-        background-position: 100% 50%;
-      }
-
       100% {
         background-position: 0 50%;
       }
@@ -113,39 +110,36 @@
 <body>
 
   <div class="card">
-    <div class="card-header">
-      <img class="card-avatar" skeleton />
-      <div class="card-title" skeleton></div>
+    <div class="card__header">
+      <img class="card__avatar" skeleton />
+      <div class="card__title" skeleton></div>
     </div>
-    <div class="card-body">
-      <img class="card-image" skeleton />
+    <div class="card__body">
+      <img class="card__image" skeleton />
     </div>
-    <div class="card-footer">
-      <div class="card-description" skeleton></div>
+    <div class="card__footer">
+      <div class="card__description" skeleton></div>
     </div>
   </div>
 
   <script>
-    const cardAvatar = document.querySelector('img.card-avatar');
-    const cardTitle = document.querySelector('div.card-title');
-    const cardImage = document.querySelector('img.card-image');
-    const cardDescription = document.querySelector('div.card-description');
 
-    window.setTimeout(() => {
+    const $ = selectors => document.querySelector(selectors);
 
-      window.fetch('assets/mockup/data.json')
-        .then(response => response.json())
-        .then(({ data }) => {
+    window.fetch('assets/mockup/data.json')
+      .then(response => response.json())
+      .then(({ card: { image, avatar, title, description } }) => {
 
-          const { image, avatar, title, description } = data[0];
+        window.setTimeout(() => {
 
-          cardImage.style.content = `url(${image})`;
-          cardAvatar.style.content = `url(${avatar})`;
-          cardTitle.innerHTML = title;
-          cardDescription.innerHTML = description;
-        });
+          $('img.card__image').style.content = `url(${image})`;
+          $('img.card__avatar').style.content = `url(${avatar})`;
+          $('div.card__title').innerHTML = title;
+          $('div.card__description').innerHTML = description;
 
-    }, 5000);
+        }, 5000);
+      });
+
   </script>
 </body>
 
